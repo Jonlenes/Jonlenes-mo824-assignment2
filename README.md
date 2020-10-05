@@ -1,4 +1,4 @@
-# MO824 - Assignment 1
+# MO824 - Assignment 2
 
 - Install python requirements: `make install`
     - You must have Gurobi and gurobipy installed.
