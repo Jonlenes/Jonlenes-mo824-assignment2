@@ -17,6 +17,6 @@ def load_instance(filename):
     json_ins = read_json(filename)
     return [
         json_ins["num_vertices"],
-        json_ins["poses"],
-        json_ins["dists"]
+        json_ins["points"],
+        json_ins["dist"]
     ]

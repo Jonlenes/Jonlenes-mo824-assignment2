@@ -1,16 +1,19 @@
 import os
 import json
 import numpy as np
+import math
 
 def generate_instance(num_vertices):
     # Posição do vertex no plano [0, 1]
-    poses = np.random.uniform(size=(num_vertices, 2))
+    points = np.random.uniform(size=(num_vertices, 2))
     # Compute the distance btw the points
-    dists = np.sum(np.abs(poses[:, None, :] - poses[None, :, :]), axis=-1)
-    return [num_vertices, poses, dists]
+    dist = {str((i, j)):
+        math.sqrt(sum((points[i][k]-points[j][k])**2 for k in range(2)))
+        for i in range(num_vertices) for j in range(i)}
+    return [num_vertices, points, dist]
 
 def instance2json(ins):
-    names = ['num_vertices', 'poses', 'dists']
+    names = ['num_vertices', 'points', 'dist']
     dic_ins = {}
     for name, value in zip(names, ins):
         if isinstance(value, np.ndarray):
